@@ -24,6 +24,7 @@ app = FastAPI(port=PORT)
 #_____loading the models____
 __version__ = "0.1.0"
 
+#____setting BASE_DIR for easy use with Docker____
 BASE_DIR = Path(__file__).resolve(strict=True).parent
 
 with open(f"{BASE_DIR}/models/rfr_app_model_with_pipeline-{__version__}.pkl", "rb") as file:
@@ -139,10 +140,9 @@ class HousePropertyData(BaseModel):
     state_of_building: Optional[StateOfBuildingEnum] = StateOfBuildingEnum.GOOD
     province: Optional[ProvinceEnum] = ProvinceEnum.ANTWERPEN
 
-# @app.get("/properties")
-# def get_properties():
-#     property_list = [PropertyData.dict()]
-#     return property_list
+@app.get("/")
+def home():
+    return {"health_check": "ok", "model_version": __version__}
 
 # Varifying the types of inputs
 # @app.post("/input")
