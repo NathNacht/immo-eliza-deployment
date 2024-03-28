@@ -24,15 +24,20 @@ app = FastAPI(port=PORT)
 #_____loading the models____
 __version__ = "0.1.0"
 
-#____setting BASE_DIR for easy use with Docker____
-BASE_DIR = Path(__file__).resolve(strict=True).parent
+# #____setting BASE_DIR for easy use with Docker____
+# BASE_DIR = Path(__file__).resolve(strict=True).parent
 
-with open(f"{BASE_DIR}/api/models/rfr_app_model_with_pipeline-{__version__}.pkl", "rb") as file:
+# with open(f"{BASE_DIR}/api/models/rfr_app_model_with_pipeline-{__version__}.pkl", "rb") as file:
+#     apartement_model = pickle.load(file)
+
+# with open(f"{BASE_DIR}/api/models/rfr_house_model_with_pipeline-{__version__}.pkl", "rb") as file:
+#     house_model = pickle.load(file)
+
+with open(f"rfr_app_model_with_pipeline-{__version__}.pkl", "rb") as file:
     apartement_model = pickle.load(file)
 
-with open(f"{BASE_DIR}/api/models/rfr_house_model_with_pipeline-{__version__}.pkl", "rb") as file:
+with open(f"rfr_house_model_with_pipeline-{__version__}.pkl", "rb") as file:
     house_model = pickle.load(file)
-
 
 
 class ApartmentPropertySubtypeEnum(str, Enum):
