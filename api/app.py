@@ -59,7 +59,7 @@ class ApartmentKitchenTypeEnum(str, Enum):
     USA_INSTALLED = "USA_INSTALLED"
     USA_SEMI_EQUIPPED = "USA_SEMI_EQUIPPED"
     USA_UNINSTALLED = "USA_UNINSTALLED"
-    nan = "nan"
+    nan = None
 
 class HousePropertySubtypeEnum(str, Enum):
     HOUSE = "HOUSE"
@@ -83,7 +83,7 @@ class HouseKitchenTypeEnum(str, Enum):
     HYPER_EQUIPPED = "HYPER_EQUIPPED"
     SEMI_EQUIPPED = "SEMI_EQUIPPED"
     USA_SEMI_EQUIPPED = "USA_SEMI_EQUIPPED"
-    NAN = "nan"
+    NAN = None
     USA_INSTALLED = "USA_INSTALLED"
     USA_UNINSTALLED = "USA_UNINSTALLED"
 
@@ -94,7 +94,7 @@ class StateOfBuildingEnum(str, Enum):
     TO_BE_DONE_UP = "TO_BE_DONE_UP"
     TO_RENOVATE = "TO_RENOVATE"
     TO_RESTORE = "TO_RESTORE"
-    nan = "nan"
+    nan = None
 
 class ProvinceEnum(str, Enum):
     ANTWERPEN = "antwerpen"
