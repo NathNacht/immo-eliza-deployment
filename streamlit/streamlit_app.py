@@ -107,7 +107,7 @@ Example Response:
 
 At the bottom of the [swagger-ui](https://immo-eliza-deployment-yr5r.onrender.com/docs), you can find the API schema and possible parametervalues that can be used:
 
-![alt text](image.png)
+![swagger-UI-schemas]('image.png')
 
 
 ## Streamlit 🎈
