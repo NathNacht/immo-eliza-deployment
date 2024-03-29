@@ -57,6 +57,8 @@ data['garden'] = st.toggle('Garden')
 
 data['garden_area'] = st.slider("Garden Area", min_value=0, max_value=23051, step=1)
 
+data['surface_of_good'] = st.slider("Surface of Good", min_value=0, max_value=999999, step=1)
+
 data['number_of_facades'] = st.slider("Number of Facades", min_value=0, max_value=8, step=1)
 
 data['swimming_pool'] = st.toggle('Swimming Pool')
