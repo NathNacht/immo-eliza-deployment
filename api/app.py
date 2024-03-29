@@ -159,17 +159,23 @@ def home():
 
 @app.post("/predict/apartement")
 def predict(app_data: ApartmentPropertyData):
-    # convert input data to dataframe for prediction
-    X_test = pd.DataFrame([app_data.dict()])
-    app_predictions = apartement_model.predict(X_test)
-    return {"predictioned price of apartment": app_predictions[0]}
+    try:
+        # convert input data to dataframe for prediction
+        X_test = pd.DataFrame([app_data.dict()])
+        app_predictions = apartement_model.predict(X_test)
+        return {app_predictions[0]}
+    except ValueError:
+        return {"error": "Invalid input. Please provide valid data."}
 
 @app.post("/predict/house")
 def predict(app_data: HousePropertyData):
-    # convert input data to dataframe for prediction
-    X_test = pd.DataFrame([app_data.dict()])
-    house_predictions = house_model.predict(X_test)
-    return {"predictioned price of house": house_predictions[0]}
+    try:
+        # convert input data to dataframe for prediction
+        X_test = pd.DataFrame([app_data.dict()])
+        house_predictions = house_model.predict(X_test)
+        return {house_predictions[0]}
+    except ValueError:
+        return {"error": "Invalid input. Please provide valid data."}
 
 
 # underneath for debugging purposes
