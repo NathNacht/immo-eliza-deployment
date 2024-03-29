@@ -1,6 +1,7 @@
 import streamlit as st
 import requests
 import pandas as pd
+import os
 
 # Configure the page
 st.set_page_config(
@@ -12,11 +13,7 @@ st.set_page_config(
 
 # Add a sidebar
 st.sidebar.markdown("### **Fill in property details and predict the apartment price**")
-
-with open("apartment.jpg", "rb") as f:
-    image = f.read()
-st.sidebar.image(image, use_column_width=True)
-
+st.sidebar.image(os.path.join('pages', 'apartment.jpg'), use_column_width=True)
 
 # Define the possible values for each column
 property_subtypes_apartment = [
@@ -40,7 +37,8 @@ provinces = [
 
 #_____postal codes preparation_______
 # Load the data from the CSV file
-pc = pd.read_csv('app_pc_city.csv')
+pc = pd.read_csv(os.path.join('pages','app_pc_city.csv'))
+
 
 # Get the unique postal codes
 unique_postal_codes = pc['postal_code'].unique()
