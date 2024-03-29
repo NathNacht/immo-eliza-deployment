@@ -22,6 +22,7 @@ The deployed version can be consulted and tested at [this streamlit link.](https
 - [File structure 📜](#file-structure-📜)
 - [API 🤖](#API-🤖)
 - [Streamlit🎈](#streamlit-🎈)
+- [Timeline📜 ](#timeline-📜)
 
 ## File Structure 📜
 
@@ -93,7 +94,7 @@ At the bottom of the [swagger-ui](https://immo-eliza-deployment-yr5r.onrender.co
 ![alt text](image.png)
 
 
-### Streamlit 🎈
+## Streamlit 🎈
 
 For the deployment of a web app on [streamlit](https://immo-eliza-deployment-zxqpwxyxuoovpuqj53m8ew.streamlit.app/) the API endpoints like available on Render were used. 
 
@@ -101,3 +102,6 @@ To use the app, navigate to the apartments or house tab at the left, fill in pro
 
 
 
+## 📜 Timeline
+
+This project was created in 5 days.
