@@ -67,10 +67,10 @@ data['province'] = st.selectbox("Province", provinces)
 
 # make a button to predict
 if st.button('Predict'):
-    st.subheader("Predict the price of a house")
+    st.subheader("House price prediction")
     res = requests.post(url = "https://immo-eliza-deployment-yr5r.onrender.com/predict/house", json=data)
     cleaned_prediction = float(res.text.strip("[]"))
     if res.status_code == 200:
-        st.write(f"House price prediction: €{round(cleaned_prediction,2)}")
+        st.write(f"€{round(cleaned_prediction,2)}")
     else:
         st.write("Prediction failed. Please check your input and try again.")
