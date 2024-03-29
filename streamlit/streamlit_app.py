@@ -15,4 +15,5 @@ It utilizes machine learning models to forecast real estate prices for apartment
 ## 🏗️ **How It's Built**
 
 """
+
 )
