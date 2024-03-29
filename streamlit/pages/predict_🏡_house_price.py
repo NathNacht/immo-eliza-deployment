@@ -13,9 +13,9 @@ st.set_page_config(
 # Add a sidebar
 st.sidebar.markdown("### **Fill in property details and predict the house price**")
 
-# with open("house.jpg", "rb") as f:
-#     image = f.read()
-# st.sidebar.image(image, use_column_width=True)
+with open("house.jpg", "rb") as f:
+    image = f.read()
+st.sidebar.image(image, use_column_width=True)
 
 
 # Define the possible values for each column
