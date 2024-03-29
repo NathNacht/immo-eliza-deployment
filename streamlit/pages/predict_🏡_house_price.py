@@ -12,6 +12,10 @@ st.set_page_config(
 # Add a sidebar
 st.sidebar.markdown("### **Fill in property details and predict the house price**")
 
+with open("house.jpg", "rb") as f:
+    image = f.read()
+st.sidebar.image(image, use_column_width=True)
+
 
 # Define the possible values for each column
 property_subtypes_house = [
@@ -33,46 +37,35 @@ provinces = [
     "west-vlaanderen", "limburg", "luxemburg", "namen"
 ]
 
-data = {}
+# Define the layout in two columns
+left_column, right_column = st.columns([1, 1])
 
-data['postal_code'] = "9000"
-    
-data['property_subtype'] = st.selectbox("Property Subtype", property_subtypes_house)
+with left_column:
+    data = {}
 
-data['number_of_rooms'] = st.slider("Number of Rooms", min_value=0, max_value=32, step=1)
+    data['postal_code'] = "9000" 
+    data['property_subtype'] = st.selectbox("Property Subtype", property_subtypes_house)
+    data['number_of_rooms'] = st.slider("Number of Rooms", min_value=0, max_value=32, step=1)
+    data['living_area'] = st.slider("Living Area", min_value=14, max_value=395, step=1)
+    data['kitchen_type'] = st.selectbox("Kitchen Type", kitchen_types_house)
+    data['furnished'] = st.toggle('Furnished')
+    data['open_fire'] = st.toggle('Open Fire')
+    data['terrace'] = st.toggle('Terrace')
+    data['terrace_area'] = st.slider("Terrace Area", min_value=0, max_value=2771, step=1)
+    data['garden'] = st.toggle('Garden')
+    data['garden_area'] = st.slider("Garden Area", min_value=0, max_value=23051, step=1)
+    data['surface_of_good'] = st.slider("Surface of Good", min_value=0, max_value=999999, step=1)
+    data['number_of_facades'] = st.slider("Number of Facades", min_value=0, max_value=8, step=1)
+    data['swimming_pool'] = st.toggle('Swimming Pool')
+    data['state_of_building'] = st.selectbox("State of Building", state_of_buildings)
+    data['province'] = st.selectbox("Province", provinces)
 
-data['living_area'] = st.slider("Living Area", min_value=14, max_value=395, step=1)
-
-data['kitchen_type'] = st.selectbox("Kitchen Type", kitchen_types_house)
-
-data['furnished'] = st.toggle('Furnished')
-
-data['open_fire'] = st.toggle('Open Fire')
-
-data['terrace'] = st.toggle('Terrace')
-
-data['terrace_area'] = st.slider("Terrace Area", min_value=0, max_value=2771, step=1)
-
-data['garden'] = st.toggle('Garden')
-
-data['garden_area'] = st.slider("Garden Area", min_value=0, max_value=23051, step=1)
-
-data['surface_of_good'] = st.slider("Surface of Good", min_value=0, max_value=999999, step=1)
-
-data['number_of_facades'] = st.slider("Number of Facades", min_value=0, max_value=8, step=1)
-
-data['swimming_pool'] = st.toggle('Swimming Pool')
-
-data['state_of_building'] = st.selectbox("State of Building", state_of_buildings)
-
-data['province'] = st.selectbox("Province", provinces)
-
-# make a button to predict
-if st.button('Predict'):
-    st.subheader("House price prediction")
-    res = requests.post(url = "https://immo-eliza-deployment-yr5r.onrender.com/predict/house", json=data)
-    cleaned_prediction = float(res.text.strip("[]"))
-    if res.status_code == 200:
-        st.write(f"€{round(cleaned_prediction,2)}")
-    else:
-        st.write("Prediction failed. Please check your input and try again.")
+    # make a button to predict
+    if st.button('Predict'):
+        st.subheader("House price prediction")
+        res = requests.post(url = "https://immo-eliza-deployment-yr5r.onrender.com/predict/house", json=data)
+        cleaned_prediction = float(res.text.strip("[]"))
+        if res.status_code == 200:
+            st.write(f"€{round(cleaned_prediction,2)}")
+        else:
+            st.write("Prediction failed. Please check your input and try again.")
