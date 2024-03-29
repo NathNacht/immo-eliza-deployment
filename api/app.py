@@ -34,7 +34,7 @@ __version__ = "0.1.0"
 #     house_model = pickle.load(file)
 
 with open(f"rfr_app_model_with_pipeline-{__version__}.pkl", "rb") as file:
-    apartement_model = pickle.load(file)
+    apartment_model = pickle.load(file)
 
 with open(f"rfr_house_model_with_pipeline-{__version__}.pkl", "rb") as file:
     house_model = pickle.load(file)
@@ -150,12 +150,12 @@ async def root():
     """ Route that returns health check and model version if the server runs """
     return {"health_check": "ok", "model_version": __version__}
 
-@app.post("/predict/apartement")
+@app.post("/predict/apartment")
 async def predict(app_data: ApartmentPropertyData):
     try:
         # convert input data to dataframe for prediction
         X_test = pd.DataFrame([app_data.dict()])
-        app_predictions = apartement_model.predict(X_test)
+        app_predictions = apartment_model.predict(X_test)
         return {app_predictions[0]}
     except ValueError:
         return {"error": "Invalid input. Please provide valid data."}
