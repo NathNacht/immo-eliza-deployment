@@ -111,42 +111,43 @@ class ProvinceEnum(str, Enum):
 
 
 class ApartmentPropertyData(BaseModel):
-    postal_code: Optional[int]=0
+    postal_code: Optional[int] = Field(9000, description="The postal code of the property", ge=1000, lt=10000)
     property_subtype: Optional[ApartmentPropertySubtypeEnum] = ApartmentPropertySubtypeEnum.APARTMENT
-    number_of_rooms: Optional[float] = 0
-    living_area: Optional[float]=0
+    number_of_rooms: Optional[float] = 3
+    living_area: Optional[float]=25
     kitchen_type: Optional[ApartmentKitchenTypeEnum] = ApartmentKitchenTypeEnum.HYPER_EQUIPPED
-    furnished: Optional[float]=0
-    open_fire: Optional[int]=0
-    terrace: Optional[float]=0
-    terrace_area: Optional[float]=0
-    garden: Optional[float]=0
-    garden_area: Optional[float]=0
-    number_of_facades: Optional[float]=0
-    swimming_pool: Optional[float]=0
+    furnished: Optional[int] = Field(1, description="Is the property furnished or not", ge=0, lt=2)
+    open_fire: Optional[int] = Field(1, description="Does the property have an open fire or not", ge=0, lt=2)
+    terrace: Optional[float] = Field(1, description="Does the property have a terrace or not", ge=0, lt=2)
+    terrace_area: Optional[float]=10
+    garden: Optional[float] = Field(1, description="Does the property have a garden or not", ge=0, lt=2)
+    garden_area: Optional[float]=10
+    number_of_facades: Optional[float]=2
+    swimming_pool: Optional[float] = Field(1, description="Does the property have a swimming pool or not", ge=0, lt=2)
     state_of_building: Optional[StateOfBuildingEnum] = StateOfBuildingEnum.GOOD
     province: Optional[ProvinceEnum] = ProvinceEnum.ANTWERPEN
 
 class HousePropertyData(BaseModel):
-    postal_code: Optional[int]=0
+    postal_code: Optional[int] = Field(9000, description="The postal code of the property", ge=1000, lt=10000)
     property_subtype: Optional[HousePropertySubtypeEnum] = HousePropertySubtypeEnum.HOUSE
-    number_of_rooms: Optional[float] = 0
-    living_area: Optional[float]=0
+    number_of_rooms: Optional[float] = 4
+    living_area: Optional[float]=200
     kitchen_type: Optional[HouseKitchenTypeEnum] = HouseKitchenTypeEnum.HYPER_EQUIPPED
-    furnished: Optional[float]=0
-    open_fire: Optional[int]=0
-    terrace: Optional[float]=0
-    terrace_area: Optional[float]=0
-    garden: Optional[float]=0
-    garden_area: Optional[float]=0
-    surface_of_good: Optional[float]=0
-    number_of_facades: Optional[float]=0
-    swimming_pool: Optional[float]=0
+    furnished: Optional[int] = Field(1, description="Is the property furnished or not", ge=0, lt=2)
+    open_fire: Optional[int] = Field(1, description="Does the property have an open fire or not", ge=0, lt=2)
+    terrace: Optional[float] = Field(1, description="Does the property have a terrace or not", ge=0, lt=2)
+    terrace_area: Optional[float]=50
+    garden: Optional[float] = Field(1, description="Does the property have a garden or not", ge=0, lt=2)
+    garden_area: Optional[float]=30
+    surface_of_good: Optional[float]=300
+    number_of_facades: Optional[float]=4
+    swimming_pool: Optional[float] = Field(1, description="Does the property have a swimming pool or not", ge=0, lt=2)
     state_of_building: Optional[StateOfBuildingEnum] = StateOfBuildingEnum.GOOD
     province: Optional[ProvinceEnum] = ProvinceEnum.ANTWERPEN
 
 @app.get("/")
-def home():
+async def root():
+    """ Route that returns health check and model version if the server runs """
     return {"health_check": "ok", "model_version": __version__}
 
 @app.post("/predict/apartement")
