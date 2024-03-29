@@ -149,16 +149,8 @@ class HousePropertyData(BaseModel):
 def home():
     return {"health_check": "ok", "model_version": __version__}
 
-# Varifying the types of inputs
-# @app.post("/input")
-# def inputing_data(app_data: ApartmentPropertyData):
-#     try:    
-#         return app_data
-#     except ValueError:
-#         return {"error": "Invalid input. Please provide valid data."}
-
 @app.post("/predict/apartement")
-def predict(app_data: ApartmentPropertyData):
+async def predict(app_data: ApartmentPropertyData):
     try:
         # convert input data to dataframe for prediction
         X_test = pd.DataFrame([app_data.dict()])
@@ -168,7 +160,7 @@ def predict(app_data: ApartmentPropertyData):
         return {"error": "Invalid input. Please provide valid data."}
 
 @app.post("/predict/house")
-def predict(app_data: HousePropertyData):
+async def predict(app_data: HousePropertyData):
     try:
         # convert input data to dataframe for prediction
         X_test = pd.DataFrame([app_data.dict()])
